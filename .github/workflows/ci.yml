@@ -1,26 +1,27 @@
 name: CI Pipeline
 
 on:
-push:
-branches: ["main"]
-pull_request:
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
-build-and-validate:
-runs-on: ubuntu-latest
+  build-and-validate:
+    runs-on: ubuntu-latest
 
-steps:
-  - name: Checkout code
-    uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  - name: Build Docker image
-    run: docker build -t flask-app .
+      - name: Build Docker image
+        run: docker build -t flask-app .
 
-  - name: Install Helm
-    uses: azure/setup-helm@v4
+      - name: Install Helm
+        uses: azure/setup-helm@v4
 
-  - name: Lint Helm chart
-    run: helm lint ./flask-app-chart
+      - name: Lint Helm chart
+        run: helm lint ./flask-app-chart
 
-  - name: Render Helm templates
-    run: helm template flask-app ./flask-app-chart
+      - name: Render Helm templates
+        run: helm template flask-app ./flask-app-chart
