@@ -1,0 +1,12 @@
+replicaCount: 3
+
+image:
+  repository: sevinclif/flask-app
+
+service:
+  port: 5000
+  nodePort: 30008
+
+mongo:
+  image: mongo:8.2.9
+  port: 27017

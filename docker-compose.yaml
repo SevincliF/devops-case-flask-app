@@ -1,0 +1,11 @@
+services:
+  mongo-service:
+    image: mongo
+    ports:
+     - "27017:27017"
+  flask-service:
+    build: .
+    ports:
+     - "5001:5000"
+    depends_on:
+      - mongo-service
