@@ -34,19 +34,33 @@ To run this project locally, the following tools must be installed:
 
 To build the image locally:
 
-```
+```bash
 docker build -t flask-app .
 ```
 
 ---
 
-## Kubernetes & Helm
+## Docker Compose
+
+The application can also be run locally using Docker Compose.
+
+To start both the Flask application and MongoDB:
+
+```bash
+docker compose up
+```
+
+This will start all required services for local development.
+
+---
+
+## Kubernetes
 
 This project uses Minikube as a local Kubernetes cluster.
 
 To start the cluster, you can run:
 
-```
+```bash
 ./setup-minikube.sh
 ```
 
@@ -55,27 +69,51 @@ This script will:
 - Start Minikube
 - Verify that the cluster is running
 
+---
+
+## Helm
+
 The application and database are deployed using Helm. The Helm chart was created based on the initial Kubernetes manifests located in the `k8s/` directory.
 
 Install:
 
-```
+```bash
 helm install flask-app ./flask-app-chart
 ```
 
 Upgrade:
 
-```
+```bash
 helm upgrade flask-app ./flask-app-chart
 ```
 
 ---
 
+## Access
+
+The Flask application is exposed using a NodePort service.
+
+To access the application, run:
+
+```bash
+minikube service flask-service
+```
+
+This will open the application in your browser.
+
+MongoDB is deployed as an internal service and is not exposed externally.
+
+---
+
 ## CI Pipeline
 
-A GitHub Actions pipeline is triggered on each push.
+A GitHub Actions pipeline is configured in:
 
-The pipeline runs the following steps:
+```bash
+.github/workflows/ci.yml
+```
+
+The pipeline is triggered on each push and performs the following steps:
 
 - Checks out the repository code
 - Builds the Docker image
@@ -91,21 +129,11 @@ The pipeline runs the following steps:
 
 The image is available on Docker Hub:
 
-```
+```bash
 sevinclif/flask-app:1.0
 ```
 
 ![Docker Hub](images/image-on-hub.png)
-
----
-
-## Access
-
-The application is exposed using a NodePort service.
-
-```
-minikube service flask-service
-```
 
 ---
 
