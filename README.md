@@ -27,7 +27,6 @@ To run this project locally, the following tools must be installed:
 - Minikube (for running a local Kubernetes cluster)
 - kubectl (to interact with the cluster)
 - Helm (for managing Kubernetes resources)
--
 
 ---
 
