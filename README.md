@@ -27,6 +27,7 @@ To run this project locally, the following tools must be installed:
 - Minikube (for running a local Kubernetes cluster)
 - kubectl (to interact with the cluster)
 - Helm (for managing Kubernetes resources)
+-
 
 ---
 
@@ -102,6 +103,23 @@ minikube service flask-service
 This will open the application in your browser.
 
 MongoDB is deployed as an internal service and is not exposed externally.
+
+---
+
+## CI Configuration
+
+To enable the CI pipeline to push Docker images to Docker Hub, the following GitHub Secrets must be configured:
+
+- `DOCKER_USERNAME`
+- `DOCKER_PASSWORD`
+
+These can be added in the repository settings under:
+
+Settings -> Secrets and variables -> Actions
+
+The pipeline uses these credentials to authenticate with Docker Hub and push the built image.
+
+Without these secrets, the CI pipeline will fail during the Docker login step.
 
 ---
 
