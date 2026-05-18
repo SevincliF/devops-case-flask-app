@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Docker image
-        run: docker build -t flask-app .
+        run: docker build -t flask-app -f docker/Dockerfile .
 
       - name: Login to Docker Hub
         run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
@@ -29,7 +29,7 @@ jobs:
         uses: azure/setup-helm@v4
 
       - name: Lint Helm chart
-        run: helm lint ./flask-app-chart
+        run: helm lint ./helm/flask-app-chart
 
       - name: Render Helm templates
-        run: helm template flask-app ./flask-app-chart
+        run: helm template flask-app ./helm/flask-app-chart
