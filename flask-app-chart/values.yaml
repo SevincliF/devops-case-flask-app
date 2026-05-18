@@ -2,6 +2,7 @@ replicaCount: 3
 
 image:
   repository: sevinclif/flask-app
+  tag: "1.0"
 
 service:
   port: 5000

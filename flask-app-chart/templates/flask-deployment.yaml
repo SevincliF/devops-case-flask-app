@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: flask-container
-          image: {{ .Values.image.repository }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           imagePullPolicy: Always
           ports:
             - containerPort: {{ .Values.service.port }}
